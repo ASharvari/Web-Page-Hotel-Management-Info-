@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AngularJS Form Submission</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"] {
+      width: calc(100% - 18px);
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h1>University Application Form</h1>
+<div ng-controller="FormController">
+  <form ng-submit="submitForm()">
+    <label>Name:</label>
+    <input type="text" ng-model="formData.name" required><br>
+    <label>Email:</label>
+    <input type="email" ng-model="formData.email" required><br>
+    <label>Age:</label>
+    <input type="number" ng-model="formData.age" required><br>
+    <label>Date of Birth:</label>
+    <input type="date" ng-model="formData.dob" required><br>
+    <label>Education:</label>
+    <input type="text" ng-model="formData.education" required><br>
+    <label>Phone Number:</label>
+    <input type="text" ng-model="formData.phoneNumber" required><br>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <!-- Include Bootstrap for date and time picker -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('td2.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+           
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #taskInput, #deadlineInput, #reminderInput {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #addTaskBtn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .deleteBtn {
+            float: right;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <!-- Add date and time picker inputs -->
+    <input type="datetime-local" id="deadlineInput" placeholder="Set deadline...">
+    <input type="time" id="reminderInput" placeholder="Set reminder time...">
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList">
+        <!-- Tasks will be added here dynamically using JavaScript -->
+    </ul>
+</div>
+
+<script>
+    document.getElementById('addTaskBtn').addEventListener('click', function() {
+        var taskInput = document.getElementById('taskInput');
+        var taskText = taskInput.value.trim();
+        var deadlineInput = document.getElementById('deadlineInput');
+        var deadline = deadlineInput.value;
+        var reminderInput = document.getElementById('reminderInput');
+        var reminderTime = reminderInput.value;
+
+        if (taskText !== '' && deadline !== '' && reminderTime !== '') {
+            var taskList = document.getElementById('taskList');
+            var listItem = document.createElement('li');
+            listItem.innerHTML = taskText + ' (Deadline: ' + deadline + ') <span class="timer">Time Left: ' + calculateTimeLeft(deadline, reminderTime) + '</span> <button class="deleteBtn" onclick="deleteTask(this)">Delete</button>';
+            taskList.appendChild(listItem);
+            taskInput.value = '';
+            deadlineInput.value = '';
+            reminderInput.value = '';
+
+            startTimer(listItem, deadline, reminderTime);
+        } else {
+            alert('Please enter a task, deadline, and reminder time!');
+        }
+    });
+
+    function deleteTask(element) {
+        element.parentNode.remove();
+    }
+
+    function calculateTimeLeft(deadline, reminderTime) {
+        // Convert deadline and reminder time strings to Date objects
+        var deadlineDate = new Date(deadline);
+        var reminderTimeParts = reminderTime.split(':');
+        var reminderHours = parseInt(reminderTimeParts[0]);
+        var reminderMinutes = parseInt(reminderTimeParts[1]);
+
+        // Calculate time difference between now and the deadline
+        var now = new Date();
+        var timeDiff = deadlineDate - now;
+        var minutesLeft = Math.floor((timeDiff / 1000 / 60) % 60);
+        var hoursLeft = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+
+        // Adjust time left based on reminder time
+        minutesLeft -= reminderMinutes;
+        hoursLeft -= reminderHours;
+        if (minutesLeft < 0) {
+            minutesLeft += 60;
+            hoursLeft--;
+        }
+        if (hoursLeft < 0) {
+            hoursLeft += 24;
+        }
+
+        return hoursLeft + 'h ' + minutesLeft + 'm';
+    }
+
+    function startTimer(taskItem, deadline, reminderTime) {
+        var timerInterval = setInterval(function () {
+            var timeLeft = calculateTimeLeft(deadline, reminderTime);
+            taskItem.querySelector('.timer').textContent = 'Time Left: ' + timeLeft;
+
+            if (timeLeft === '0h 0m') {
+                alert('Time\'s up for task: ' + taskItem.textContent);
+                clearInterval(timerInterval);
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>

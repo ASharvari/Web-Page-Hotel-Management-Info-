@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Registration and Login Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="authService.js"></script>
+    <script src="authController.js"></script>
+</head>
+<body>
+    <div ng-controller="AuthController as auth">
+        <h2>Registration</h2>
+        <form ng-submit="auth.register()">
+            <input type="email" ng-model="auth.email" placeholder="Email" required>
+            <input type="password" ng-model="auth.password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+
+        <h2>Login</h2>
+        <form ng-submit="auth.login()">
+            <input type="email" ng-model="auth.email" placeholder="Email" required>
+            <input type="password" ng-model="auth.password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('AuthController', ['$window', 'AuthService', function($window, AuthService) {
+            var auth = this;
+            
+            auth.register = function() {
+                // Simulated registration logic
+                console.log('Registered:', auth.email, auth.password);
+                // Display alert after registration
+                $window.alert('Registration successful!');
+                // Prevent form submission
+                return false;
+            };
+
+            auth.login = function() {
+                // Simulated login logic
+                console.log('Logged in:', auth.email, auth.password);
+                // Redirect to new page after login
+                $window.location.href = 'new_page.html'; // Change to your desired page URL
+                // Prevent form submission
+                return false;
+            };
+        }]);
+    </script>
+</body>
+</html>

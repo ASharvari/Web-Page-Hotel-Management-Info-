@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+        }
+        body
+        {
+            background-color: lightcyan;
+        }
+    
+</style>
+<body>
+    <h1>Quiz Time!</h1>
+    <form id="quizForm">
+        <fieldset>
+            <legend>Question 1: What is the capital of France?</legend>
+            <label>
+                <input type="radio" name="q1" value="a"> a) Berlin
+            </label>
+            <label>
+                <input type="radio" name="q1" value="b"> b) Madrid
+            </label>
+            <label>
+                <input type="radio" name="q1" value="c"> c) Paris
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Question 2: What is the largest mammal on Earth?</legend>
+            <label>
+                <input type="radio" name="q2" value="a"> a) Elephant
+            </label>
+            <label>
+                <input type="radio" name="q2" value="b"> b) Blue Whale
+            </label>
+            <label>
+                <input type="radio" name="q2" value="c"> c) Giraffe
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Question 3: What is the square root of 144?</legend>
+            <label>
+                <input type="radio" name="q3" value="a"> a) 10
+            </label>
+            <label>
+                <input type="radio" name="q3" value="b"> b) 12
+            </label>
+            <label>
+                <input type="radio" name="q3" value="c"> c) 15
+            </label>
+        </fieldset>
+        <br>
+        <br>
+
+        <button type="button" onclick="submitQuiz()">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function submitQuiz() {
+            const correctAnswers = ["c", "b", "b"]; // Answers to the questions
+            let score = 0;
+
+            // Loop through each question and check the selected answer
+            for (let i = 1; i <= 3; i++) {
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === correctAnswers[i - 1]) {
+                        score++;
+                    }
+                }
+            }
+
+            // Display the result
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `<p>Your score: ${score} out of 3</p>`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333; /* Default text color */
+        }
+        header {
+            background-color: #007bff; /* Header background color */
+            color: #fff; /* Header text color */
+            padding: 20px 0; /* Header padding */
+            text-align: center; /* Center align text */
+        }
+        nav {
+            background-color: #333; /* Navigation background color */
+            color: #fff; /* Navigation text color */
+            text-align: center; /* Center align text */
+            padding: 10px 0; /* Navigation padding */
+        }
+        nav a {
+            color: #fff; /* Link text color */
+            text-decoration: none; /* Remove underline from links */
+            margin: 0 10px; /* Add spacing between links */
+        }
+        .container {
+            max-width: 800px; /* Set maximum width for content */
+            margin: 20px auto; /* Center content horizontally */
+            padding: 20px; /* Add padding to content */
+            background-color: #fff; /* Content background color */
+            border-radius: 8px; /* Add rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+        }
+        h2 {
+            color: #333; /* Heading text color */
+            margin-top: 0; /* Remove top margin for heading */
+        }
+        p {
+            line-height: 1.6; /* Set line height for paragraphs */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Task Manager</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Login</a>
+    <a href="#">Registration</a>
+</nav>
+
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+        <img src="sportsday.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="sports day1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img src="sports day3.jpg" style="width:100%">
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- The dots/bullets/indicators -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+<div class="container">
+    <h2>Introduction to Task Manager</h2>
+    <p>Task Manager is a powerful tool designed to help individuals and teams organize, track, and prioritize tasks efficiently. Whether you're a busy professional, a student managing multiple assignments, or a team leader overseeing project deadlines, Task Manager provides a centralized platform to streamline your workflow and boost productivity.</p>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li>Task Organization: Easily create, categorize, and organize tasks based on priority, due date, or project.</li>
+        <li>Task Tracking: Keep track of task progress, status updates, and completion dates in real-time.</li>
+        <li>Collaboration: Collaborate seamlessly with team members by assigning tasks, sharing files, and leaving comments.</li>
+        <li>Reminders and Notifications: Set reminders and receive notifications to stay on top of deadlines and important updates.</li>
+        <li>Customization: Customize task lists, tags, and filters to tailor Task Manager to your specific needs and workflow.</li>
+        <li>Time Tracking: Track time spent on tasks to better understand productivity patterns and optimize time management.</li>
+        <li>Reports and Analytics: Generate reports and analytics to gain insights into task performance, team productivity, and project timelines.</li>
+        <li>Integration: Seamlessly integrate Task Manager with other tools and applications such as calendars, email clients, and project management software for enhanced functionality.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+    <ul>
+        <li>Increased Productivity: Stay organized, focused, and on track with your tasks and deadlines.</li>
+        <li>Improved Collaboration: Foster teamwork, communication, and accountability among team members.</li>
+        <li>Enhanced Time Management: Efficiently allocate time, prioritize tasks, and optimize workflow to achieve better results.</li>
+        <li>Better Decision Making: Make informed decisions based on real-time task data, analytics, and performance metrics.</li>
+        <li>Reduced Stress: Minimize overwhelm and stress by having a clear overview of tasks, deadlines, and priorities.</li>
+    </ul>
+
+    <p>Task Manager is an indispensable tool for individuals and teams looking to streamline task management, boost productivity, and achieve their goals effectively. With its intuitive interface, robust features, and customizable options, Task Manager empowers users to take control of their tasks, projects, and schedules with ease.</p>
+</div>
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="formApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    
+</head>
+<style>
+    body{
+        background-color: aqua;
+    }
+    
+</style>
+
+<body ng-controller="FormController as vm">
+
+    <div class="wrapper">
+
+        <div class="form">
+
+            <div class="title">
+               <h1> Registration Form</h1> 
+            </div>
+            <div class="inputfield">
+                <label for="firstName">First Name</label>
+                <input type="text" class="input" id="firstName" name="firstName" placeholder="Enter your first name" ng-model="vm.formData.firstName">
+                <span class="error" ng-show="vm.firstNameError">{{ vm.firstNameError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="input" id="lastName" name="lastName" placeholder="Enter your last name" ng-model="vm.formData.lastName">
+                <span class="error" ng-show="vm.lastNameError">{{ vm.lastNameError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="email">Email Address</label>
+                <input type="text" class="input" id="email" name="email" placeholder="abc@xyz.com" ng-model="vm.formData.email">
+                <span class="error" ng-show="vm.emailError">{{ vm.emailError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="phone">Phone Number</label>
+                <input type="text" class="input" id="phone" name="phone" placeholder="91+ XXXX XXXX XX" ng-model="vm.formData.phone">
+                <span class="error" ng-show="vm.phoneError">{{ vm.phoneError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="address">Address</label>
+                <textarea class="textarea" id="address" name="address" placeholder="Enter your address" ng-model="vm.formData.address"></textarea>
+                <span class="error" ng-show="vm.addressError">{{ vm.addressError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="password">Password</label>
+                <input type="password" class="input" id="password" name="password" placeholder="Enter your password" ng-model="vm.formData.password">
+                <span class="error" ng-show="vm.passwordError">{{ vm.passwordError }}</span>
+            </div><br><br>
+            <div class="inputfield">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="input" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" ng-model="vm.formData.confirmPassword">
+                <span class="error" ng-show="vm.confirmPasswordError">{{ vm.confirmPasswordError }}</span>
+            </div><br><br>
+
+            <div class="inputfield">
+                <input type="submit" value="Register" class="btn" ng-click="vm.submitForm()">
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Include your AngularJS controller script -->
+    <script src="script1.js"></script>
+
+</body>
+
+</html>
